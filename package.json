@@ -21,6 +21,48 @@
   "type": "commonjs",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "dev": "nodemon --legacy-watch  -r tsconfig-paths/register src/server.ts",
+    "build": "npm run clean && tsc && cp -r src/prisma/ dist/prisma/ ",
+    "start": "node  dist/server.js",
+    "format": "npx prettier --write ."
+  },
+  "_moduleAliases": {
+    "@": "./src"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.14.0",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "module-alias": "^2.2.3",
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/express-session": "^1.18.1",
+    "@types/module-alias": "^2.0.4",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.13.10",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
+    "@types/yamljs": "^0.2.34",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.14.0",
+    "prettier": "^2.6.2",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "yarn": "^1.22.19"
   }
 }

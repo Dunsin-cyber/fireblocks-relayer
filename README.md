@@ -1,5 +1,3 @@
-
-
 # MonieHub Relayer
 
 ## Overview
@@ -15,26 +13,26 @@ This ensures that MonieHub doesn’t have to talk to Fireblocks directly and can
 
 ## ✨ Key Responsibilities
 
-* **Wallet Management**
+- **Wallet Management**
 
-  * Creates and manages wallets (e.g., Bitcoin) on behalf of MonieHub by interacting with Fireblocks.
+  - Creates and manages wallets (e.g., Bitcoin) on behalf of MonieHub by interacting with Fireblocks.
 
-* **Transaction Relay**
+- **Transaction Relay**
 
-  * Receives requests from MonieHub (e.g., send funds, check balances).
-  * Forwards them to Fireblocks securely.
-  * Sends back results and updates.
+  - Receives requests from MonieHub (e.g., send funds, check balances).
+  - Forwards them to Fireblocks securely.
+  - Sends back results and updates.
 
-* **Security Layer**
+- **Security Layer**
 
-  * Abstracts Fireblocks API keys and credentials away from MonieHub.
-  * Ensures sensitive operations are centralized and controlled.
+  - Abstracts Fireblocks API keys and credentials away from MonieHub.
+  - Ensures sensitive operations are centralized and controlled.
 
-* **Update Syncing with Webhooks**
+- **Update Syncing with Webhooks**
 
-  * Fireblocks sends events to the relayer.
-  * The relayer pushes structured webhooks notifications to MonieHub.
-  * Moniehub processes the updates automatically.
+  - Fireblocks sends events to the relayer.
+  - The relayer pushes structured webhooks notifications to MonieHub.
+  - Moniehub processes the updates automatically.
 
 ---
 
@@ -42,24 +40,27 @@ This ensures that MonieHub doesn’t have to talk to Fireblocks directly and can
 
 1. **MonieHub Request**
 
-   * Example: “Create a Bitcoin wallet for user X.”
+   - Example: “Create a Bitcoin wallet for user X.”
+
 2. **Relayer Processing**
 
-   * Relayer translates this request into the appropriate Fireblocks API call.
+   - Relayer translates this request into the appropriate Fireblocks API call.
+
 3. **Fireblocks Action**
 
-   * Fireblocks performs the requested action (e.g., creates wallet).
+   - Fireblocks performs the requested action (e.g., creates wallet).
+
 4. **Relayer Response**
 
-   * Relayer sends the result back to MonieHub in a standardized format.
+   - Relayer sends the result back to MonieHub in a standardized format.
 
 ---
 
 ## 🚀 Benefits
 
-* **Simplified Integration**: MonieHub only talks to the Relayer, not directly to Fireblocks.
-* **Security**: Fireblocks credentials are never exposed to MonieHub.
-* **Scalability**: Future integrations (e.g., other custody providers) can plug into the same Relayer layer.
+- **Simplified Integration**: MonieHub only talks to the Relayer, not directly to Fireblocks.
+- **Security**: Fireblocks credentials are never exposed to MonieHub.
+- **Scalability**: Future integrations (e.g., other custody providers) can plug into the same Relayer layer.
 
 ---
 
@@ -81,6 +82,5 @@ sequenceDiagram
 
 ## 📝 Notes
 
-* The Relayer currently supports **wallet creation** and **transaction updates**.
-* Future versions may include multi-chain support and integrations with other custody solutions.
-
+- The Relayer currently supports **wallet creation** and **transaction updates**.
+- Future versions may include multi-chain support and integrations with other custody solutions.
