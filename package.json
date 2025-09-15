@@ -1,0 +1,26 @@
+{
+  "name": "relayer",
+  "version": "1.0.0",
+  "description": "bridge between fireblocks and moniehub",
+  "keywords": [
+    "bitcoin",
+    "crypto",
+    "ralyer",
+    "wallet"
+  ],
+  "homepage": "https://github.com/Dunsin-cyber/fireblocks-relayer#readme",
+  "bugs": {
+    "url": "https://github.com/Dunsin-cyber/fireblocks-relayer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dunsin-cyber/fireblocks-relayer.git"
+  },
+  "license": "ISC",
+  "author": "Dunsin",
+  "type": "commonjs",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
