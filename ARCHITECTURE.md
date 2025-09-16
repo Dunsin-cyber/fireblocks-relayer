@@ -7,119 +7,6 @@
 3. **Fireblocks** - External secure wallet infrastructure
 4. **Database** - Stores user and wallet information
 
-## API Endpoints
-
-### 1. Generate Wallet Address
-- **Endpoint**: `POST /wallets/generate`
-- **Purpose**: Creates new wallet addresses for a user
-- **Request Query Parameters**:
-  - `email` (string, required): User's email address
-  - `userId` (string, required): User's unique identifier from main server
-- **Response**:
-  ```json
-  {
-    "success": true,
-    "vaultId": "string",
-    "wallets": [
-      {
-        "asset": "BTC",
-        "address": "string",
-        "balance": 0
-      },
-        {
-        "asset": "USDT",
-        "address": "string",
-        "balance": 0
-      }
-      ...
-      
-    ]
-  }
-  ```
-
-### 2. Get User Wallets
-- **Endpoint**: `GET /wallets/user/:userId`
-- **Purpose**: Retrieve all wallet addresses for a specific user
-- **Response**:
-  ```json
-  {
-    "userId": "string",
-    "wallets": [
-      {
-        "id": "string",
-        "asset": "BTC",
-        "address": "string",
-        "balance": 0.5,
-        "createdAt": "datetime"
-      }
-    ]
-  }
-  ```
-
-
-  
-### 3. Add Asset
-- **Endpoint**: `POST /wallet/asset`
-- **Purpose**: Retrieve all wallet addresses on the platform (admin only)
-- **Query Parameters**:
-  - `userId` (string)
-  - `assetId` (string): (SOL etc.)
-- **Response**:
-  ```json
-  {
-    "sratus: "success",
-    "wallets": [
-      {
-        "id": "string",
-        "asset": "SOL",
-        "address": "string",
-        "balance": 0,
-        "createdAt": "datetime"
-      }
-    ]
-  }
-
-### 4. Get All Wallets (Admin)
-- **Endpoint**: `GET /admin/wallets`
-- **Purpose**: Retrieve all wallet addresses on the platform (admin only)
-- **Query Parameters**:
-  - `userId` (string, optional): Filter by user ID
-  - `asset` (string, optional): Filter by asset name (BTC, ETH, USDT, etc.)
-- **Response**:
-  ```json
-  {
-    "wallets": [
-      {
-        "id": "string",
-        "userId": "string",
-        "email": "string",
-        "asset": "BTC",
-        "address": "string",
-        "balance": 0.5,
-        "createdAt": "datetime"
-      }
-    ]
-  }
-  ```
-
-  ```
-
-### 5. Webhook Endpoint
-- **Endpoint**: `POST /webhooks/fireblocks`
-- **Purpose**: Receive deposit notifications from Fireblocks
-- **Headers**:
-  - `X-Fireblocks-Signature`: Signature for verification
-- **Request Body** (Fireblocks webhook format):
-  ```json
-  {
-    "type": "VAULT_ACCOUNT_ASSET_ADDRESS_CREATED",
-    "data": {
-      "vaultAccountId": "string",
-      "assetId": "BTC",
-      "address": "string"
-    }
-  }
-  ```
 
 
 
@@ -173,29 +60,123 @@ Create transaction record
 
 ## Sequence Diagram
 
-```mermaid
-sequenceDiagram
-    participant MainServer
-    participant Relayer
-    participant Database
-    participant Fireblocks
+![Diagram](./flow.svg)
 
-    MainServer->>Relayer: POST /wallets/generate?email=user@example.com&userId=123
-    Relayer->>Database: Check if user exists with userId=123
-    alt User does not exist
-        Database->>Relayer: User not found
-        Relayer->>Database: Create user entry
-        Relayer->>Fireblocks: Create vault (using relayer user ID)
-        Fireblocks-->>Relayer: Vault created with ID
-        Relayer->>Fireblocks: Activate assets (BTC, ETH, USDT, etc.)
-        Fireblocks-->>Relayer: Wallet addresses
-        Relayer->>Database: Store wallet addresses
-    else User exists
-        Database->>Relayer: User found
-        Relayer->>Database: Retrieve existing wallets
-    end
-    Relayer-->>MainServer: Return wallet addresses
-```
+
+## API Endpoints
+
+### 1. Generate Wallet Address
+- **Endpoint**: `POST /wallets/generate`
+- **Purpose**: Creates new wallet addresses for a user
+- **Request Query Parameters**:
+  - `email` (string, required): User's email address
+  - `userId` (string, required): User's unique identifier from main server
+- **Response**:
+  ```json
+  {
+    "success": true,
+    "vaultId": "string",
+    "wallets": [
+      {
+        "asset": "BTC",
+        "address": "string",
+        "balance": 0
+      },
+        {
+        "asset": "USDT",
+        "address": "string",
+        "balance": 0
+      }
+    
+      
+    ]
+  }
+  ```
+
+### 2. Get User Wallets
+- **Endpoint**: `GET /wallets/user/:userId`
+- **Purpose**: Retrieve all wallet addresses for a specific user
+- **Response**:
+  ```json
+  {
+    "userId": "string",
+    "wallets": [
+      {
+        "id": "string",
+        "asset": "BTC",
+        "address": "string",
+        "balance": 0.5,
+        "createdAt": "datetime"
+      }
+    ]
+  }
+  ```
+
+
+  
+### 3. Add Asset
+- **Endpoint**: `POST /wallet/asset`
+- **Purpose**: Retrieve all wallet addresses on the platform (admin only)
+- **Query Parameters**:
+  - `userId` (string)
+  - `assetId` (string): (SOL etc.)
+- **Response**:
+  ```json
+  {
+    "status": "success",
+    "wallets": [
+      {
+        "id": "string",
+        "asset": "SOL",
+        "address": "string",
+        "balance": 0,
+        "createdAt": "datetime"
+      }
+    ]
+  }
+
+### 4. Get All Wallets (Admin)
+- **Endpoint**: `GET /admin/wallets`
+- **Purpose**: Retrieve all wallet addresses on the platform (admin only)
+- **Query Parameters**:
+  - `userId` (string, optional): Filter by user ID
+  - `asset` (string, optional): Filter by asset name (BTC, ETH, USDT, etc.)
+- **Response**:
+  ```json
+  {
+    "wallets": [
+      {
+        "id": "string",
+        "userId": "string",
+        "email": "string",
+        "asset": "BTC",
+        "address": "string",
+        "balance": 0.5,
+        "createdAt": "datetime"
+      }
+    ]
+  }
+  ```
+
+  ```
+
+### 5. Webhook Endpoint
+- **Endpoint**: `POST /webhooks/fireblocks`
+- **Purpose**: Receive deposit notifications from Fireblocks
+- **Headers**:
+  - `X-Fireblocks-Signature`: Signature for verification
+- **Request Body** (Fireblocks webhook format):
+  ```json
+  {
+    "type": "VAULT_ACCOUNT_ASSET_ADDRESS_CREATED",
+    "data": {
+      "vaultAccountId": "string",
+      "assetId": "BTC",
+      "address": "string"
+    }
+  }
+  ```
+
 
 ## Error Handling
 
