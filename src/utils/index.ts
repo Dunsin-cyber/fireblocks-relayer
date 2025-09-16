@@ -1,4 +1,5 @@
 import {hash, compare} from 'bcryptjs';
+import {validate as uuidValidate} from 'uuid';
 import {AppError} from './AppError';
 
 const utils = {
@@ -48,6 +49,9 @@ const utils = {
     // Collapse multiple spaces inside (shouldn’t normally exist but just in case)
     formatted = formatted.replace(/\s+/g, '');
     return formatted;
+  },
+  validUserId: (userId: string) => {
+    return uuidValidate(userId);
   },
   dataParser: (dmy: string) => {
     if (!dmy || typeof dmy !== 'string') {

@@ -7,7 +7,7 @@ import addressRoutes from './address.routes';
 const router = express.Router();
 
 router.use('/vault', vaultRoutes);
-router.use('/address',  addressRoutes);
+router.use('/address', addressRoutes);
 // router.use('/admin', adminRoutes);
 // router.use("/webhook", webhookRoutes)
 

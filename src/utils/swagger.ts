@@ -10,13 +10,12 @@ const swaggerDefinition = {
     description: 'API documentation',
   },
   components: {
-    securitySchemes: {
-    },
+    securitySchemes: {},
   },
   servers: [
     {
-      url: "https://xxx.com",
-      description: "Production server",
+      url: 'https://xxx.com',
+      description: 'Production server',
     },
     {
       url: `http://localhost:${config.PORT}`,

@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 //  MAKES SURE THAT ALL VARIABLES ARE IN ENV BEFPRE APP STARTS
-const requiredEnvVars = ['NODE_ENV'];
+const requiredEnvVars = ['NODE_ENV', 'FIREBLOCKS_API_KEY'];
 
 const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar]);
 
@@ -28,8 +28,12 @@ const STATUS_CODE = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
+//? FIREBLOCKS CREDENTIALS
+const FIREBLOCKS_API_KEY = process.env.FIREBLOCKS_API_KEY as string;
+
 export const config = {
   NODE_ENV,
   PORT,
   STATUS_CODE,
+  FIREBLOCKS_API_KEY,
 };
