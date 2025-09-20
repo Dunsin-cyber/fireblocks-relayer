@@ -1,0 +1,69 @@
+// ? background tasks and queues using redis
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id                String        @id @default(uuid())
+    email             String        @unique
+    userId            String        @unique
+    fireblocksVaultId String        @unique
+    createdAt         DateTime      @default(now())
+    updatedAt         DateTime      @updatedAt
+    Transaction       Transaction[]
+    Wallet            Wallet[]
+}
+
+model Wallet {
+    id        String   @id @default(uuid())
+    assets    Asset[]
+    userId    String
+    user      User     @relation(fields: [userId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Asset {
+    id      String @id @default(uuid())
+    name    String
+    balance Float  @default(0)
+
+    symbol      String        @unique
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+    Transaction Transaction[]
+    Wallet      Wallet?       @relation(fields: [walletId], references: [id])
+    walletId    String?
+}
+
+model Webhook {
+    id          String       @id @default(uuid())
+    url         String
+    event       String
+    provider    String
+    reference   String
+    data        Json
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+    Transaction Transaction?
+}
+
+model Transaction {
+    id        String   @id @default(uuid())
+    type      String
+    status    String
+    amount    Float
+    assetId   String
+    asset     Asset    @relation(fields: [assetId], references: [id])
+    userId    String
+    user      User     @relation(fields: [userId], references: [id])
+    dataId    String   @unique
+    data      Webhook  @relation(fields: [dataId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
