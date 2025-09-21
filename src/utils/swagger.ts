@@ -1,6 +1,7 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 import path from 'path';
 import {config} from '@/constants/index';
+import YAML from 'yamljs';
 
 const swaggerDefinition = {
   openapi: '3.0.0',
@@ -23,11 +24,22 @@ const swaggerDefinition = {
   ],
 };
 
+// Load extra YAML docs (kept in /docs folder)
+const vaultDocs = YAML.load(path.join(__dirname, '../docs/vault.swagger.yaml'));
+
 const options = {
   swaggerDefinition,
   apis: [path.join(__dirname, '../routes/**/*.{js,ts}')],
 };
 
-const swaggerSpec = swaggerJSDoc(options);
+let swaggerSpec = swaggerJSDoc(options);
+
+swaggerSpec = {
+  ...swaggerSpec,
+  paths: {
+    ...swaggerSpec,
+    ...vaultDocs.paths,
+  },
+};
 
 export default swaggerSpec;

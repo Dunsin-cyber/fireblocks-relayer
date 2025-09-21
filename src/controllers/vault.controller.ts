@@ -5,6 +5,13 @@ import {createVault} from '@/services/vault.service';
 import {config} from '@/constants';
 import {AppError} from '@/utils/AppError';
 import utils from '@/utils/index';
+import {
+  createUser,
+  getUserById,
+  initUser,
+  updateUserVaultId,
+} from '@/services/user.service';
+import {User} from '@prisma/client';
 
 export const handleCreateVault = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -17,17 +24,28 @@ export const handleCreateVault = asyncHandler(
       );
     }
 
-    const vault = await createVault(userId, email);
+    let userExists;
+    let user: User | null;
+    userExists = await getUserById(userId);
 
-    if (vault) {
+    if (!userExists) {
+      try {
+        user = await initUser(userId, email);
+        const {updatedAt, ...returnData} = user;
+        return res
+          .status(config.STATUS_CODE.OK)
+          .json(new ApiResponse('success', returnData));
+      } catch (err) {
+        throw new AppError(
+          'User initialization failed, please try again later.',
+          config.STATUS_CODE.INTERNAL_SERVER_ERROR
+        );
+      }
+    } else if (userExists && userExists.fireblocksVaultId) {
       throw new AppError(
-        'Vault creation failed',
-        config.STATUS_CODE.INTERNAL_SERVER_ERROR
+        'User already initialized',
+        config.STATUS_CODE.BAD_REQUEST
       );
     }
-
-    return res
-      .status(config.STATUS_CODE.OK)
-      .json(new ApiResponse('success', vault));
   }
 );

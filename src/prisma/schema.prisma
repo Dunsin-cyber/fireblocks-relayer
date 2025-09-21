@@ -11,8 +11,8 @@ datasource db {
 model User {
     id                String        @id @default(uuid())
     email             String        @unique
-    userId            String        @unique
-    fireblocksVaultId String        @unique
+    upstreamUserId    String        @unique
+    fireblocksVaultId String?       @unique
     createdAt         DateTime      @default(now())
     updatedAt         DateTime      @updatedAt
     Transaction       Transaction[]

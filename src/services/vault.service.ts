@@ -6,10 +6,10 @@ import {
   VaultsApiUnhideVaultAccountRequest,
 } from '@fireblocks/ts-sdk';
 
-export const createVault = async (userId: string, email: string) => {
+export const createVault = async (userId: string) => {
   const requestParameters: VaultsApiCreateVaultAccountRequest = {
     createVaultAccountRequest: {
-      name: `${userId}-${email}`,
+      name: `${userId}`,
       hiddenOnUI: false, // just for demo purpose, should be hidden in production
       autoFuel: false,
     },
@@ -19,9 +19,9 @@ export const createVault = async (userId: string, email: string) => {
   return vault;
 };
 
-export const findUserVault = async (userId: string, email: string) => {
+export const findUserVault = async (vaultId: string) => {
   const requestParamters: VaultsApiGetVaultAccountRequest = {
-    vaultAccountId: `${userId}-${email}`,
+    vaultAccountId: `${vaultId}`,
   };
   const vault = await fireblocks.vaults.getVaultAccount(requestParamters);
 
