@@ -15,7 +15,7 @@ const utils = {
   },
   validEmail: (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email.toLocaleLowerCase());
+    return emailRegex.test(email.toLowerCase());
   },
   validPassword: (password: string): boolean => {
     // Example validation: at least 8 characters, one uppercase, one lowercase, one number

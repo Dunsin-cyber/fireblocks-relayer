@@ -10,6 +10,23 @@ import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from '@/utils/swagger';
 
+// TODO
+// Save the webhook body in a table called webhooks
+// check if webhook exist, if it doesm, return status code to show that we have it and should stop sending
+
+// create a model/table called WebHook
+// create a coolumn called event, referene, provider, data of type json object
+
+// transaction table shluld have data: json object
+// store payload coming from the webhook in the webhook
+// external refrene field
+// userId
+// data: store extact payload coming from the webhooknotifiaction
+
+// update the balance in the wallet after recording the tranaction
+
+// i hae to include a header, that server 1 has to alwways pass in the header to confirm it's from server 1
+
 const app = express();
 
 const corsOptions = {

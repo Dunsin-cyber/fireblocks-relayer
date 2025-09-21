@@ -1,5 +1,3 @@
-
-
 ## System Components
 
 1. **Main Server (MonieHub)** - Primary application server
@@ -15,15 +13,11 @@
 
 [![](https://mermaid.ink/img/pako:eNpdkEFvgkAQhf_KZk6aoAEWEDn0YImn9mJtTCo9DDAKEXbJ7lq16n8vUBtj57Qz-773ducMmcwJItgqbAq2jBPB2prP1vNSUVrJbKc_2Wj0dEkgpkbq0rAVpYWUOzYwR5aTwbLSwwQubLFeUIUnUuyN1FeZ0eev2eLGv6LJCnbAqiLDMM8Vad1xq3i2Hqz6sWYxGkxR0_Af_N7kaIilWKHI6IY9Sl7klhmFQmNmSilYKTaVPHTSZZewvF89xoDV_r7MITJqTxbUpGrsWjh3_gmYguo2MWqPOapdAom4tkyD4kPK-g9Tcr8tINpgpdtu3z83LrHd611CIif1LPfCQOT4bu8B0RmOEPkOH9uBH3A-8bjrhKEFJ4g8Z2w7Pg9CO3Qd7geTqwXffag99l0v5NNgOnWDkHuOc_0BsJ2RCw?type=png)](https://mermaid.live/edit#pako:eNpdkEFvgkAQhf_KZk6aoAEWEDn0YImn9mJtTCo9DDAKEXbJ7lq16n8vUBtj57Qz-773ducMmcwJItgqbAq2jBPB2prP1vNSUVrJbKc_2Wj0dEkgpkbq0rAVpYWUOzYwR5aTwbLSwwQubLFeUIUnUuyN1FeZ0eev2eLGv6LJCnbAqiLDMM8Vad1xq3i2Hqz6sWYxGkxR0_Af_N7kaIilWKHI6IY9Sl7klhmFQmNmSilYKTaVPHTSZZewvF89xoDV_r7MITJqTxbUpGrsWjh3_gmYguo2MWqPOapdAom4tkyD4kPK-g9Tcr8tINpgpdtu3z83LrHd611CIif1LPfCQOT4bu8B0RmOEPkOH9uBH3A-8bjrhKEFJ4g8Z2w7Pg9CO3Qd7geTqwXffag99l0v5NNgOnWDkHuOc_0BsJ2RCw)
 
-
 ### 📌 3. Wallet Retrieval Flow
 
 [![](https://mermaid.ink/img/pako:eNp9kV1vgjAUhv9Kc640Qce3yMUSN7LpBUvGlpgMvKj2KGRQTCnbmPrfVxCy7Ga9aU9znuc9aU-wKxmCDwdBjyl5DRJO1AqXcVjyDJf1lkxISDNOXlB8oNiQyeT2nMADyl1KPmmeoySUMYFVhRXZNqSuUKxYAmcSxRHmtEHRsdkON1f5IghXT_GCFRkfdM81iqbXVWSkdnJD9lkuFaycVMnluHNeFVHPPar0fghGJW071sFdPFr3pkBdbmmF481fLkJZCz6geVbJFg2X_3UNAd34CQdNvVnGwJeiRg0KFAVtSzi1kgRkigUm4Ksjo-I9gYRfFHOk_K0siwETZX1Iwd_TvFJVfVQhGGRU_cZvC3KG4r6suQTfcNzOAf4JvsB3DGuqu45rWTPbMg3P06AB3zamuuFYrqd7pmE57uyiwXcXqk8d0_asuTufm65n2YZx-QHd7aED?type=png)](https://mermaid.live/edit#pako:eNp9kV1vgjAUhv9Kc640Qce3yMUSN7LpBUvGlpgMvKj2KGRQTCnbmPrfVxCy7Ga9aU9znuc9aU-wKxmCDwdBjyl5DRJO1AqXcVjyDJf1lkxISDNOXlB8oNiQyeT2nMADyl1KPmmeoySUMYFVhRXZNqSuUKxYAmcSxRHmtEHRsdkON1f5IghXT_GCFRkfdM81iqbXVWSkdnJD9lkuFaycVMnluHNeFVHPPar0fghGJW071sFdPFr3pkBdbmmF481fLkJZCz6geVbJFg2X_3UNAd34CQdNvVnGwJeiRg0KFAVtSzi1kgRkigUm4Ksjo-I9gYRfFHOk_K0siwETZX1Iwd_TvFJVfVQhGGRU_cZvC3KG4r6suQTfcNzOAf4JvsB3DGuqu45rWTPbMg3P06AB3zamuuFYrqd7pmE57uyiwXcXqk8d0_asuTufm65n2YZx-QHd7aED)
 
 
-
-
-<!-- 
 ## Workflow
 
 ### 1. Wallet Generation Flow
@@ -97,8 +91,8 @@ Create transaction record
         "address": "string",
         "balance": 0
       }
-    
-      
+
+
     ]
   }
   ```
@@ -123,7 +117,7 @@ Create transaction record
   ```
 
 
-  
+
 ### 3. Add Asset
 - **Endpoint**: `POST /wallet/asset`
 - **Purpose**: Retrieve all wallet addresses on the platform (admin only)
@@ -187,4 +181,4 @@ Create transaction record
   }
   ```
 
- -->
+ 
