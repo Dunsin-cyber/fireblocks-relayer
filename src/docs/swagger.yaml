@@ -1,7 +1,7 @@
 paths:
   /api/vault/create/{userId}/{email}:
     post:
-      summary: Initailize a user
+      summary: Initialize a user
       tags:
         - User
       parameters:
@@ -14,12 +14,39 @@ paths:
         - name: email
           in: path
           required: true
-          example: 'dunsin@gmail.com'
+          example: dunsin@gmail.com
           schema:
             type: string
       responses:
         '201':
-          description: user initailized successfully
+          description: User initialized successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 09796deb-8ad1-4167-9ae5-0602ddfb2925
+                      email:
+                        type: string
+                        example: dunsin2@gmail.com
+                      upstreamUserId:
+                        type: string
+                        example: 550e8400-e29b-41d4-a716-446655440002
+                      fireblocksVaultId:
+                        type: string
+                        example: '7'
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: 2025-09-22T09:41:42.412Z
         '400':
           description: Invalid request payload or parameters
         '401':
@@ -42,6 +69,31 @@ paths:
       responses:
         '200':
           description: Base assets activated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Bitcoin Test
+                        symbol:
+                          type: string
+                          example: BTC_TEST
+                        address:
+                          type: string
+                          example: tb1qpw0nmwculpgudd863cp8shqq3vzpk7czyddsa0
+                        walletId:
+                          type: string
+                          example: 9ee5040f-391a-4a0f-9415-9a5d23e736cf
         '400':
           description: Invalid request
         '500':
@@ -68,13 +120,14 @@ paths:
 
   /api/asset/get-assets/{userId}:
     get:
-      summary: Get all assets for a user
+      summary: Get all asset addresses of a user
       tags:
         - Assets
       parameters:
         - name: userId
           in: path
           required: true
+          example: 550e8400-e29b-41d4-a716-446655440000
           schema:
             type: string
       responses:
@@ -180,6 +233,7 @@ paths:
         - name: userId
           in: path
           required: true
+          example: 550e8400-e29b-41d4-a716-446655440000
           schema:
             type: string
         - name: assetId

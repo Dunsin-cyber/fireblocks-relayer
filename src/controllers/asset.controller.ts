@@ -6,8 +6,7 @@ import {config} from '@/constants';
 import {AppError} from '@/utils/AppError';
 import utils from '@/utils/index';
 import {getUserById} from '@/services/user.service';
-import {activateAssetForAVault, initAsset} from '@/services/asset.service';
-
+import {getAssetBalances, getUserAssetsAddr, initAsset} from '@/services/asset.service';
 
 export const handleActvateBaseAssetsForVault = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -44,13 +43,29 @@ export const handleActvateAsset = asyncHandler(
   }
 );
 
-export const handleUserAssets = asyncHandler(
+export const handleGetAssetAddresses = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    return res
-      .status(config.STATUS_CODE.OK)
-      .json(new ApiResponse('success', 'Asset Activated Successfully'));
+    const {userId} = req.params
+
+      if (!utils.validUserId(userId)) {
+      throw new AppError(
+        'Invalid userId format',
+        config.STATUS_CODE.BAD_REQUEST
+      );
+    }
+    
+   const user = await getUserById(userId)
+    if(user?.wallet) {
+        const assets = await getUserAssetsAddr(user.wallet.id)
+        return res
+        .status(config.STATUS_CODE.OK)
+        .json(new ApiResponse('success', assets));
+    } else {
+        throw new AppError("User or user Wallet does not exist", config.STATUS_CODE.NOT_FOUND)
+    }
   }
 );
+
 
 export const handleGetAnAsset = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -74,9 +89,25 @@ export const handleGetAllAssetAddresses = asyncHandler(
 
 export const handleAssetBalances = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    return res
-      .status(config.STATUS_CODE.OK)
-      .json(new ApiResponse('success', 'Asset Activated Successfully'));
+
+       const {userId} = req.params
+
+      if (!utils.validUserId(userId)) {
+      throw new AppError(
+        'Invalid userId format',
+        config.STATUS_CODE.BAD_REQUEST
+      );
+    }
+    
+       const user = await getUserById(userId)
+    if(user?.wallet) {
+        const balance = await getAssetBalances(user.wallet.id)
+        return res
+        .status(config.STATUS_CODE.OK)
+        .json(new ApiResponse('success', balance));
+    } else {
+        throw new AppError("User or user Wallet does not exist", config.STATUS_CODE.NOT_FOUND)
+    }
   }
 );
 
