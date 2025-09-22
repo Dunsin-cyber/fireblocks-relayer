@@ -15,8 +15,8 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'https://xxx.com',
-      description: 'Production server',
+      url: 'https://fireblocks-relayer.onrender.com',
+      description: 'Test server',
     },
     {
       url: `http://localhost:${config.PORT}`,
