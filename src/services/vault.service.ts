@@ -28,21 +28,6 @@ export const findUserVault = async (vaultId: string) => {
   return vault;
 };
 
-export const activateAssetForAVault = async (
-  vaultId: string,
-  assetId: string
-) => {
-  const requestParamters: VaultsApiActivateAssetForVaultAccountRequest = {
-    vaultAccountId: vaultId,
-    assetId: assetId,
-  };
-  const response = await fireblocks.vaults.activateAssetForVaultAccount(
-    requestParamters
-  );
-
-  return response;
-};
-
 export const showVaultInConsole = async (vaultId: string) => {
   const requestParamters: VaultsApiUnhideVaultAccountRequest = {
     vaultAccountId: vaultId,

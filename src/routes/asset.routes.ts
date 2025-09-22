@@ -12,7 +12,7 @@ import {
 const router = express.Router();
 
 // -----ASSET RELATED ROUTES-----
-router.post('/activate-base-assets', handleActvateBaseAssetsForVault);
+router.post('/activate-base-assets/:userId', handleActvateBaseAssetsForVault);
 router.post('/activate-asset/:assetId', handleActvateAsset);
 router.get('/get-assets/:userId', handleUserAssets);
 router.get('/get-asset/:userId/:assetId', handleGetAnAsset);

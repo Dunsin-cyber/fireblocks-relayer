@@ -30,10 +30,42 @@ const STATUS_CODE = {
 
 //? FIREBLOCKS CREDENTIALS
 const FIREBLOCKS_API_KEY = process.env.FIREBLOCKS_API_KEY as string;
+//! NOTE: asset (USDT) is not supported by fireblocks
+
+const BASE_ASSETS_TESTNET = [
+  {
+    name: 'Bitcoin Test',
+    id: 'BTC_TEST',
+  },
+  {
+    name: 'Ethereum Testnet (Sepolia)',
+    id: 'ETH_TEST5',
+  },
+  {
+    name: 'Solana Test',
+    id: 'SOL_TEST',
+  },
+  {
+    name: 'Binance Coin Test',
+    id: 'BNB_TEST',
+  },
+];
+const BASE_ASSETS_MAINNET = [
+  {
+    name: 'Bitcoin',
+    id: 'BTC',
+  },
+  {
+    name: 'Ethereum',
+    id: 'ETH',
+  },
+];
 
 export const config = {
   NODE_ENV,
   PORT,
   STATUS_CODE,
   FIREBLOCKS_API_KEY,
+  BASE_ASSETS_TESTNET,
+  BASE_ASSETS_MAINNET,
 };

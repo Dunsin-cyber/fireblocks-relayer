@@ -27,7 +27,7 @@
     "start": "node  dist/server.js",
     "format": "npx prettier --write .",
     "prisma:generate": "prisma generate",
-    "db:migrate": "cd ./src && npx prisma migrate dev --name renane_userId"
+    "db:migrate": "cd ./src && npx prisma migrate dev --name fix_wallet_relation"
   },
   "_moduleAliases": {
     "@": "./src"

@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 export const getUserById = async (userId: string) => {
   const user = prisma.user.findUnique({
     where: {upstreamUserId: userId},
+    include: {wallet: true},
   });
   return user;
 };
@@ -18,6 +19,7 @@ export const createUser = async (
     data: {
       upstreamUserId: userId,
       email,
+      wallet: {create: {}},
     },
   });
 
@@ -45,6 +47,7 @@ export const initUser = async (userId: string, email: string) => {
         data: {
           upstreamUserId: userId,
           email,
+          wallet: {create: {}},
         },
       });
 
@@ -90,3 +93,13 @@ model CleanupJob {
   updatedAt DateTime @updatedAt
 }
 */
+
+export const getUserWallet = async (userId: string) => {
+  const wallet = await prisma.wallet.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  return wallet;
+};

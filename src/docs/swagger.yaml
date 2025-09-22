@@ -14,7 +14,7 @@ paths:
         - name: email
           in: path
           required: true
-          example: "dunsin@gmail.com"
+          example: 'dunsin@gmail.com'
           schema:
             type: string
       responses:
@@ -26,12 +26,19 @@ paths:
           description: Unauthorized — invalid transaction PIN
         '500':
           description: Internal server error
-  
-  /api/vault/activate-base-assets:
+
+  /api/asset/activate-base-assets/{userId}:
     post:
       summary: Activate base assets for a vault
       tags:
         - Assets
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          example: 550e8400-e29b-41d4-a716-446655440000
+          schema:
+            type: string
       responses:
         '200':
           description: Base assets activated successfully
@@ -40,7 +47,7 @@ paths:
         '500':
           description: Internal server error
 
-  /api/vault/activate-asset/{assetId}:
+  /api/asset/activate-asset/{assetId}:
     post:
       summary: Activate a specific asset
       tags:
@@ -59,7 +66,7 @@ paths:
         '500':
           description: Internal server error
 
-  /api/vault/get-assets/{userId}:
+  /api/asset/get-assets/{userId}:
     get:
       summary: Get all assets for a user
       tags:
@@ -78,7 +85,7 @@ paths:
         '500':
           description: Internal server error
 
-  /api/vault/get-asset/{userId}/{assetId}:
+  /api/asset/get-asset/{userId}/{assetId}:
     get:
       summary: Get a specific asset for a user
       tags:
@@ -102,7 +109,7 @@ paths:
         '500':
           description: Internal server error
 
-  /api/vault/addresses/{userId}:
+  /api/asset/addresses/{userId}:
     get:
       summary: Get all asset addresses for a user
       tags:
@@ -121,7 +128,7 @@ paths:
         '500':
           description: Internal server error
 
-  /api/vault/address/{userId}/{assetId}:
+  /api/asset/address/{userId}/{assetId}:
     get:
       summary: Get the address for a specific asset
       tags:
@@ -145,7 +152,7 @@ paths:
         '500':
           description: Internal server error
 
-  /api/vault/balances/{userId}:
+  /api/asset/balances/{userId}:
     get:
       summary: Get balances of all assets for a user
       tags:
@@ -164,7 +171,7 @@ paths:
         '500':
           description: Internal server error
 
-  /api/vault/balance/{userId}/{assetId}:
+  /api/asset/balance/{userId}/{assetId}:
     get:
       summary: Get the balance of a specific asset
       tags:

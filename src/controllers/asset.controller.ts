@@ -5,26 +5,34 @@ import {createVault} from '@/services/vault.service';
 import {config} from '@/constants';
 import {AppError} from '@/utils/AppError';
 import utils from '@/utils/index';
+import {getUserById} from '@/services/user.service';
+import {activateAssetForAVault, initAsset} from '@/services/asset.service';
 
-//TODO: get userId, email from params
+
 export const handleActvateBaseAssetsForVault = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const {vaultId} = req.params;
+    const {userId} = req.params;
 
-    if (!vaultId) {
+    if (!utils.validUserId(userId)) {
       throw new AppError(
         'Invalid query parameter',
         config.STATUS_CODE.BAD_REQUEST
       );
     }
 
-    const assets = ['BTC', 'ETH', 'USDC', 'USDT', 'DAI'];
+    const user = await getUserById(userId);
+    if (user?.fireblocksVaultId && user?.wallet?.id) {
+      let data = await initAsset(user.fireblocksVaultId, user.wallet.id);
 
-    const activationResults = [];
-
-    return res
-      .status(config.STATUS_CODE.OK)
-      .json(new ApiResponse('success', 'activationResults'));
+      return res
+        .status(config.STATUS_CODE.CREATED)
+        .json(new ApiResponse('success', data));
+    } else {
+      throw new AppError(
+        'User or user wallet does not exist',
+        config.STATUS_CODE.NOT_FOUND
+      );
+    }
   }
 );
 

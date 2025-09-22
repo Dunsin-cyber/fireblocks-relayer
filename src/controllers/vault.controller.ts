@@ -1,7 +1,6 @@
 import {asyncHandler} from '@/middlewares/asyncHandler';
 import {ApiResponse} from '@/utils/ApiResponse';
 import {NextFunction, Request, Response} from 'express';
-import {createVault} from '@/services/vault.service';
 import {config} from '@/constants';
 import {AppError} from '@/utils/AppError';
 import utils from '@/utils/index';
