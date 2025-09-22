@@ -27,6 +27,7 @@
     "start": "node  dist/server.js",
     "format": "npx prettier --write .",
     "prisma:generate": "prisma generate",
+    "db:init": "cd ./src && npx prisma generate",
     "start:prod": "npm run db:deploy:prod && npm run start",
     "db:deploy": "cd ./src && npx prisma migrate deploy",
     "db:deploy:prod": "cd ./dist",
