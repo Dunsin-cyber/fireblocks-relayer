@@ -17,6 +17,7 @@ model User {
     updatedAt         DateTime      @updatedAt
     transactions      Transaction[]
     wallet            Wallet?
+    assets            Asset[]
 }
 
 model Wallet {
@@ -38,8 +39,10 @@ model Asset {
     createdAt   DateTime      @default(now())
     updatedAt   DateTime      @updatedAt
     Transaction Transaction[]
+    walletId    String
+    userId      String
     Wallet      Wallet?       @relation(fields: [walletId], references: [id])
-    walletId    String?
+    user        User?         @relation(fields: [userId], references: [id])
 }
 
 model Webhook {

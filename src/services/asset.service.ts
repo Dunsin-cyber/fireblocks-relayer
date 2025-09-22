@@ -29,6 +29,7 @@ type CreateAssetT = {
   symbol: string;
   address: string;
   walletId: string;
+  userId:string
 };
 
 export const createAssetinDB = async (data: CreateAssetT) => {
@@ -43,7 +44,7 @@ export const createAssetinDB = async (data: CreateAssetT) => {
   }
 };
 
-export const initAsset = async (vaultId: string, walletId: string) => {
+export const initAsset = async (vaultId: string, walletId: string, userId:string) => {
   try {
     return await prisma.$transaction(async (tx) => {
       const assets =
@@ -63,6 +64,7 @@ export const initAsset = async (vaultId: string, walletId: string) => {
                 symbol: asset.id,
                 address: activate.data.address,
                 walletId,
+                userId
               };
             }
 
@@ -89,7 +91,7 @@ export const initAsset = async (vaultId: string, walletId: string) => {
         });
       }
 
-      return validAssets;
+      return "wallets successfully created";
     });
   } catch (err) {
     console.log('schedule cleanup');
@@ -123,3 +125,17 @@ export const getAssetBalances = async (walletId: string) => {
     },
   });
 };
+
+
+export const getUserWallet = async (userId:string) => {
+    const wallet = prisma.wallet.findUnique({
+      where : {
+        userId
+      },
+      include: {
+        assets:true
+      }
+    })
+
+    return wallet
+}

@@ -69,31 +69,31 @@ paths:
       responses:
         '200':
           description: Base assets activated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: success
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          example: Bitcoin Test
-                        symbol:
-                          type: string
-                          example: BTC_TEST
-                        address:
-                          type: string
-                          example: tb1qpw0nmwculpgudd863cp8shqq3vzpk7czyddsa0
-                        walletId:
-                          type: string
-                          example: 9ee5040f-391a-4a0f-9415-9a5d23e736cf
+          # content:
+          #   application/json:
+          #     schema:
+          #       type: object
+          #       properties:
+          #         status:
+          #           type: string
+          #           example: success
+          #         data:
+          #           type: array
+          #           items:
+          #             type: object
+          #             properties:
+          #               name:
+          #                 type: string
+          #                 example: Bitcoin Test
+          #               symbol:
+          #                 type: string
+          #                 example: BTC_TEST
+          #               address:
+          #                 type: string
+          #                 example: tb1qpw0nmwculpgudd863cp8shqq3vzpk7czyddsa0
+          #               walletId:
+          #                 type: string
+          #                 example: 9ee5040f-391a-4a0f-9415-9a5d23e736cf
         '400':
           description: Invalid request
         '500':

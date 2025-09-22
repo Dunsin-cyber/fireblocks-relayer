@@ -9,6 +9,7 @@ import {getUserById} from '@/services/user.service';
 import {
   getAssetBalances,
   getUserAssetsAddr,
+  getUserWallet,
   initAsset,
 } from '@/services/asset.service';
 
@@ -25,7 +26,11 @@ export const handleActvateBaseAssetsForVault = asyncHandler(
 
     const user = await getUserById(userId);
     if (user?.fireblocksVaultId && user?.wallet?.id) {
-      let data = await initAsset(user.fireblocksVaultId, user.wallet.id);
+      const wallet = await getUserWallet(user.id)
+      if(wallet?.assets && wallet?.assets?.length == config.BASE_ASSETS_TESTNET.length) {
+        throw new AppError("Assets activated already", config.STATUS_CODE.BAD_REQUEST);
+      }
+      let data = await initAsset(user.fireblocksVaultId, user.wallet.id, user.id);
 
       return res
         .status(config.STATUS_CODE.CREATED)

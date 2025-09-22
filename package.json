@@ -28,9 +28,10 @@
     "prisma:generate": "prisma generate",
     "db:init": "cd ./src && npx prisma generate",
     "start:prod": "npm run db:deploy:prod && npm run start",
+    "db:reset": "cd ./src && npx prisma migrate reset --force",
     "db:deploy": "cd ./src && npx prisma migrate deploy",
     "db:deploy:prod": "cd ./dist",
-    "db:migrate": "cd ./src && npx prisma migrate dev --name fix_wallet_relation"
+    "db:migrate": "cd ./src && npx prisma migrate dev --name add_asset_user_relation"
   },
   "_moduleAliases": {
     "@": "./dist"
