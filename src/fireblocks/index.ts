@@ -9,7 +9,7 @@ const fireblocks = new Fireblocks({
   apiKey: config.FIREBLOCKS_API_KEY,
   basePath: BasePath.Sandbox, // or assign directly to "https://sandbox-api.fireblocks.io/v1";
   secretKey: readFileSync(
-    path.join(__dirname, FIREBLOCKS_API_SECRET_PATH),
+    path.join(FIREBLOCKS_API_SECRET_PATH),
     'utf8'
   ),
 });
