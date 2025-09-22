@@ -5,3 +5,4 @@ dist
 .vscode
 .DS_Store
 src/fireblocks/fireblocks_secret.key
+src/etc/secrets/fireblocks_secret.key
