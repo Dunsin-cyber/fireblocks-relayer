@@ -1,0 +1,189 @@
+paths:
+  /api/vault/create/{userId}/{email}:
+    post:
+      summary: Initailize a user
+      tags:
+        - User
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          example: 550e8400-e29b-41d4-a716-446655440000
+          schema:
+            type: string
+        - name: email
+          in: path
+          required: true
+          example: "dunsin@gmail.com"
+          schema:
+            type: string
+      responses:
+        '201':
+          description: user initailized successfully
+        '400':
+          description: Invalid request payload or parameters
+        '401':
+          description: Unauthorized — invalid transaction PIN
+        '500':
+          description: Internal server error
+  
+  /api/vault/activate-base-assets:
+    post:
+      summary: Activate base assets for a vault
+      tags:
+        - Assets
+      responses:
+        '200':
+          description: Base assets activated successfully
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+  /api/vault/activate-asset/{assetId}:
+    post:
+      summary: Activate a specific asset
+      tags:
+        - Assets
+      parameters:
+        - name: assetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Asset activated successfully
+        '400':
+          description: Invalid asset ID
+        '500':
+          description: Internal server error
+
+  /api/vault/get-assets/{userId}:
+    get:
+      summary: Get all assets for a user
+      tags:
+        - Assets
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of assets
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+
+  /api/vault/get-asset/{userId}/{assetId}:
+    get:
+      summary: Get a specific asset for a user
+      tags:
+        - Assets
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: assetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Asset details
+        '404':
+          description: Asset or user not found
+        '500':
+          description: Internal server error
+
+  /api/vault/addresses/{userId}:
+    get:
+      summary: Get all asset addresses for a user
+      tags:
+        - Addresses
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of addresses
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+
+  /api/vault/address/{userId}/{assetId}:
+    get:
+      summary: Get the address for a specific asset
+      tags:
+        - Addresses
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: assetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Asset address
+        '404':
+          description: Address not found
+        '500':
+          description: Internal server error
+
+  /api/vault/balances/{userId}:
+    get:
+      summary: Get balances of all assets for a user
+      tags:
+        - Balances
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of balances
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+
+  /api/vault/balance/{userId}/{assetId}:
+    get:
+      summary: Get the balance of a specific asset
+      tags:
+        - Balances
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: assetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Asset balance
+        '404':
+          description: Balance not found
+        '500':
+          description: Internal server error

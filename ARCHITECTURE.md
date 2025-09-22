@@ -17,10 +17,10 @@
 
 [![](https://mermaid.ink/img/pako:eNp9kV1vgjAUhv9Kc640Qce3yMUSN7LpBUvGlpgMvKj2KGRQTCnbmPrfVxCy7Ga9aU9znuc9aU-wKxmCDwdBjyl5DRJO1AqXcVjyDJf1lkxISDNOXlB8oNiQyeT2nMADyl1KPmmeoySUMYFVhRXZNqSuUKxYAmcSxRHmtEHRsdkON1f5IghXT_GCFRkfdM81iqbXVWSkdnJD9lkuFaycVMnluHNeFVHPPar0fghGJW071sFdPFr3pkBdbmmF481fLkJZCz6geVbJFg2X_3UNAd34CQdNvVnGwJeiRg0KFAVtSzi1kgRkigUm4Ksjo-I9gYRfFHOk_K0siwETZX1Iwd_TvFJVfVQhGGRU_cZvC3KG4r6suQTfcNzOAf4JvsB3DGuqu45rWTPbMg3P06AB3zamuuFYrqd7pmE57uyiwXcXqk8d0_asuTufm65n2YZx-QHd7aED?type=png)](https://mermaid.live/edit#pako:eNp9kV1vgjAUhv9Kc640Qce3yMUSN7LpBUvGlpgMvKj2KGRQTCnbmPrfVxCy7Ga9aU9znuc9aU-wKxmCDwdBjyl5DRJO1AqXcVjyDJf1lkxISDNOXlB8oNiQyeT2nMADyl1KPmmeoySUMYFVhRXZNqSuUKxYAmcSxRHmtEHRsdkON1f5IghXT_GCFRkfdM81iqbXVWSkdnJD9lkuFaycVMnluHNeFVHPPar0fghGJW071sFdPFr3pkBdbmmF481fLkJZCz6geVbJFg2X_3UNAd34CQdNvVnGwJeiRg0KFAVtSzi1kgRkigUm4Ksjo-I9gYRfFHOk_K0siwETZX1Iwd_TvFJVfVQhGGRU_cZvC3KG4r6suQTfcNzOAf4JvsB3DGuqu45rWTPbMg3P06AB3zamuuFYrqd7pmE57uyiwXcXqk8d0_asuTufm65n2YZx-QHd7aED)
 
-
 ## Workflow
 
 ### 1. Wallet Generation Flow
+
 ```
 Main Server → POST /wallets/generate?email=user@example.com&userId=123
     │
@@ -47,6 +47,7 @@ Return wallet addresses to main server
 ```
 
 ### 2. Deposit Handling Flow
+
 ```
 Fireblocks detects deposit → Sends webhook to relayer
     │
@@ -66,16 +67,17 @@ Create transaction record
 (Optional) Notify main server of deposit
 ```
 
-
 ## API Endpoints
 
 ### 1. Generate Wallet Address
+
 - **Endpoint**: `POST /wallets/generate`
 - **Purpose**: Creates new wallet addresses for a user
 - **Request Query Parameters**:
   - `email` (string, required): User's email address
   - `userId` (string, required): User's unique identifier from main server
 - **Response**:
+
   ```json
   {
     "success": true,
@@ -86,18 +88,17 @@ Create transaction record
         "address": "string",
         "balance": 0
       },
-        {
+      {
         "asset": "USDT",
         "address": "string",
         "balance": 0
       }
-
-
     ]
   }
   ```
 
 ### 2. Get User Wallets
+
 - **Endpoint**: `GET /wallets/user/:userId`
 - **Purpose**: Retrieve all wallet addresses for a specific user
 - **Response**:
@@ -116,9 +117,8 @@ Create transaction record
   }
   ```
 
-
-
 ### 3. Add Asset
+
 - **Endpoint**: `POST /wallet/asset`
 - **Purpose**: Retrieve all wallet addresses on the platform (admin only)
 - **Query Parameters**:
@@ -138,14 +138,17 @@ Create transaction record
       }
     ]
   }
+  ```
 
 ### 4. Get All Wallets (Admin)
+
 - **Endpoint**: `GET /admin/wallets`
 - **Purpose**: Retrieve all wallet addresses on the platform (admin only)
 - **Query Parameters**:
   - `userId` (string, optional): Filter by user ID
   - `asset` (string, optional): Filter by asset name (BTC, ETH, USDT, etc.)
 - **Response**:
+
   ```json
   {
     "wallets": [
@@ -164,7 +167,10 @@ Create transaction record
 
   ```
 
+  ```
+
 ### 5. Webhook Endpoint
+
 - **Endpoint**: `POST /webhooks/fireblocks`
 - **Purpose**: Receive deposit notifications from Fireblocks
 - **Headers**:
@@ -180,5 +186,3 @@ Create transaction record
     }
   }
   ```
-
- 

@@ -25,7 +25,7 @@ const swaggerDefinition = {
 };
 
 // Load extra YAML docs (kept in /docs folder)
-const vaultDocs = YAML.load(path.join(__dirname, '../docs/vault.swagger.yaml'));
+const vaultDocs = YAML.load(path.join(__dirname, '../docs/swagger.yaml'));
 
 const options = {
   swaggerDefinition,
