@@ -18,7 +18,6 @@
   },
   "license": "ISC",
   "author": "Dunsin",
-  "type": "commonjs",
   "main": "src/server.ts",
   "scripts": {
     "clean": "rimraf dist",
