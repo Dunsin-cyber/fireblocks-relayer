@@ -23,14 +23,17 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "nodemon --legacy-watch  -r tsconfig-paths/register src/server.ts",
-    "build": "npm run clean && tsc && cp -r src/prisma/ dist/prisma/ ",
+    "build": "npm run clean && tsc && cp -r src/prisma/ dist/prisma/ && cp -r src/docs/ dist/docs/",
     "start": "node  dist/server.js",
     "format": "npx prettier --write .",
     "prisma:generate": "prisma generate",
+    "start:prod": "npm run db:deploy:prod && npm run start",
+    "db:deploy": "cd ./src && npx prisma migrate deploy",
+    "db:deploy:prod": "cd ./dist",
     "db:migrate": "cd ./src && npx prisma migrate dev --name fix_wallet_relation"
   },
   "_moduleAliases": {
-    "@": "./src"
+    "@": "./dist"
   },
   "dependencies": {
     "@fireblocks/ts-sdk": "^12.1.0",

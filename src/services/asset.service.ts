@@ -97,33 +97,29 @@ export const initAsset = async (vaultId: string, walletId: string) => {
   }
 };
 
-
-export const getUserAssetsAddr = async (walletId:string) => {
+export const getUserAssetsAddr = async (walletId: string) => {
   return await prisma.asset.findMany({
     where: {
-        walletId
+      walletId,
     },
     select: {
-      name:true,
-      symbol:true,
-      address:true,
-      createdAt:true
-    }
-  })
-}
+      name: true,
+      symbol: true,
+      address: true,
+      createdAt: true,
+    },
+  });
+};
 
-
-
-export const getAssetBalances = async (walletId:string) => {
+export const getAssetBalances = async (walletId: string) => {
   return await prisma.asset.findMany({
     where: {
-        walletId
+      walletId,
     },
     select: {
-      symbol:true,
-      balance:true,
-      updatedAt:true
-    }
-  })
-}
-
+      symbol: true,
+      balance: true,
+      updatedAt: true,
+    },
+  });
+};
