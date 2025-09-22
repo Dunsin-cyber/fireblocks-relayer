@@ -3,7 +3,7 @@ import {Fireblocks, BasePath} from '@fireblocks/ts-sdk';
 import {config} from '@/constants/index';
 import path from 'path';
 
-const FIREBLOCKS_API_SECRET_PATH = './fireblocks_secret.key';
+const FIREBLOCKS_API_SECRET_PATH = '../fireblocks_secret.key';
 
 const fireblocks = new Fireblocks({
   apiKey: config.FIREBLOCKS_API_KEY,
